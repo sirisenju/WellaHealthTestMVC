@@ -1,0 +1,42 @@
+﻿@model List<UserModel>
+
+@{
+    ViewData["Title"] = "Student Registration";
+}
+
+<h2>All students</h2>
+<a asp-controller="Register" asp-action="AddStudent" class="btn btn-primary">Add Student</a>
+
+<div class="text-center">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Course</th>
+                <th>Age</th>
+                <th>Email address</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null)
+            {
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.lastName @item.firstName</td>
+                        <td>@item.course</td>
+                        <td>@item.age</td>
+                        <td>@item.emailAddress</td>
+                        <td>
+                            <a class="btn btn-primary" href="/Register/EditStudent/@item.Id">Edit</a>
+                            <a class="btn btn-danger" href="/Register/DeleteStudent/@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
